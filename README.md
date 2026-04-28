@@ -37,7 +37,6 @@ El proyecto trabaja sobre un modelo de datos integrado con las siguientes fuente
 ---
 
 ## 📊 Dashboard
-
 index.html
 ### Resumen Ejecutivo
 Vista consolidada con los 6 KPIs más relevantes del ejercicio, waterfall de composición del resultado anual y proyección comparativa 2025 vs 2026.
