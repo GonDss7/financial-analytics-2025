@@ -1,5 +1,6 @@
 # financial-analytics-2025
 # 💼 Financial Analytics — Empresa de Servicios & Distribución 2025
+[![Demo](https://img.shields.io/badge/Demo-Ver%20Dashboard%20%E2%86%92-021859?style=for-the-badge)](https://gondss7.github.io/financial-analytics-2025/)
 
 **Análisis financiero integral: P&L, Cashflow, IVA, Deuda y Rentabilidad por cliente**
 
