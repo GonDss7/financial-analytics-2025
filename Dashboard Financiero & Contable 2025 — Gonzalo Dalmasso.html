@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<!-- saved from url=(0070)file:///C:/Users/gonza/Downloads/dashboard_financiero_servicios_1.html -->
+<html lang="es"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dashboard Financiero &amp; Contable 2025 — Gonzalo Dalmasso</title>
+<script src="./Dashboard Financiero &amp; Contable 2025 — Gonzalo Dalmasso_files/chart.umd.js.descarga"></script>
+<link href="./Dashboard Financiero &amp; Contable 2025 — Gonzalo Dalmasso_files/css2" rel="stylesheet">
+<style>
+:root {
+  --navy:   #021859;
+  --night:  #011140;
+  --teal:   #023059;
+  --slate:  #5D768C;
+  --cream:  #F2EFE9;
+  --green:  #1A9E70;
+  --red:    #C0392B;
+  --amber:  #B87200;
+  --blue:   #2E75B6;
+  --purple: #6C5DD3;
+  --text:   #1A1A2E;
+  --mid:    #444444;
+  --muted:  #64748B;
+  --border: rgba(2,24,89,0.09);
+  --bg:     #F4F3F0;
+  --card:   #FFFFFF;
+  --cream-bg: #F2EFE9;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;}
+
+/* HEADER */
+.hdr{background:var(--night);height:54px;display:flex;align-items:center;justify-content:space-between;padding:0 2rem;border-bottom:2px solid var(--navy);}
+.hdr-l{display:flex;align-items:center;gap:14px;}
+.logo{font-size:21px;font-weight:600;letter-spacing:.12em;color:#fff;}
+.hdr-sep{width:1px;height:20px;background:rgba(255,255,255,.18);}
+.hdr-sub{font-size:11.5px;color:var(--slate);}
+.hdr-r{font-size:11px;color:rgba(255,255,255,.4);font-family:'DM Mono',monospace;}
+
+/* SUBHDR */
+.subhdr{background:var(--navy);padding:9px 2rem;display:flex;align-items:center;justify-content:space-between;}
+.biz-name{font-size:13.5px;font-weight:500;color:rgba(255,255,255,.92);}
+.biz-meta{font-size:11px;color:var(--slate);margin-top:1px;}
+.last-upd{font-size:10.5px;color:rgba(255,255,255,.35);font-family:'DM Mono',monospace;}
+
+/* NAV TABS */
+.nav-tabs{background:#fff;border-bottom:1px solid var(--border);padding:0 2rem;display:flex;gap:0;}
+.tab{padding:11px 18px;font-size:12px;font-weight:500;color:var(--muted);cursor:pointer;border-bottom:2px solid transparent;transition:.15s;}
+.tab.active{color:var(--navy);border-bottom-color:var(--navy);}
+.tab:hover:not(.active){color:var(--text);}
+
+/* MAIN */
+.main{padding:1.4rem 2rem 2rem;max-width:1500px;margin:0 auto;}
+.sec-label{font-size:10px;font-weight:600;letter-spacing:.12em;color:var(--slate);text-transform:uppercase;margin:0 0 10px;}
+
+/* KPI GRID */
+.kpi-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:9px;margin-bottom:1.3rem;}
+.kpi{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:13px 14px;position:relative;overflow:hidden;}
+.kpi::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--navy);}
+.kpi.g::before{background:var(--green);}
+.kpi.r::before{background:var(--red);}
+.kpi.a::before{background:var(--amber);}
+.kpi.b::before{background:var(--blue);}
+.kpi.p::before{background:var(--purple);}
+.kpi-l{font-size:9.5px;color:var(--muted);margin-bottom:4px;}
+.kpi-v{font-size:19px;font-weight:600;color:var(--text);line-height:1;}
+.kpi-v.pos{color:var(--green);}
+.kpi-v.neg{color:var(--red);}
+.kpi-v.warn{color:var(--amber);}
+.kpi-s{font-size:9.5px;color:var(--muted);margin-top:4px;}
+.kpi-s.up{color:var(--green);}
+.kpi-s.dn{color:var(--red);}
+
+/* GRID ROWS */
+.row2{display:grid;grid-template-columns:1.4fr 1fr;gap:11px;margin-bottom:11px;}
+.row3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:11px;margin-bottom:11px;}
+.row22{display:grid;grid-template-columns:1fr 1fr;gap:11px;margin-bottom:11px;}
+.row13{display:grid;grid-template-columns:1.6fr 1fr;gap:11px;margin-bottom:11px;}
+
+/* CARDS */
+.card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:15px 17px;}
+.card-t{font-size:9.5px;font-weight:600;letter-spacing:.1em;color:var(--slate);text-transform:uppercase;margin-bottom:11px;}
+.chart-w{position:relative;}
+
+/* TABLE */
+.tbl{width:100%;border-collapse:collapse;font-size:11px;}
+.tbl th{font-size:9.5px;font-weight:600;color:var(--muted);text-align:right;padding:5px 7px;border-bottom:1px solid var(--border);letter-spacing:.04em;}
+.tbl th:first-child{text-align:left;}
+.tbl td{padding:5.5px 7px;text-align:right;border-bottom:1px solid rgba(2,24,89,.05);color:var(--text);}
+.tbl td:first-child{text-align:left;color:var(--muted);}
+.tbl .bold td{font-weight:600;border-top:1px solid var(--border);border-bottom:none;}
+.tbl .bold td:first-child{color:var(--text);}
+.tbl .sub td{background:#fafafa;}
+.pos{color:var(--green)!important;}
+.neg{color:var(--red)!important;}
+.warn{color:var(--amber)!important;}
+
+/* HBAR */
+.hbar-wrap{display:flex;flex-direction:column;gap:7px;}
+.hbar-row{display:flex;align-items:center;gap:7px;font-size:10.5px;}
+.hbar-lbl{width:90px;color:var(--muted);text-align:right;flex-shrink:0;font-size:9.5px;}
+.hbar-bg{flex:1;height:7px;background:#E8EDF5;border-radius:3px;overflow:hidden;}
+.hbar-fill{height:100%;border-radius:3px;}
+.hbar-val{width:65px;color:var(--text);font-weight:500;text-align:right;flex-shrink:0;font-size:10.5px;font-family:'DM Mono',monospace;}
+
+/* METRIC ROW */
+.mrow{display:flex;justify-content:space-between;align-items:center;padding:6px 0;border-bottom:1px solid rgba(2,24,89,.05);}
+.mrow:last-child{border-bottom:none;}
+.mrow-n{font-size:11.5px;color:var(--muted);}
+.mrow-v{font-size:12px;font-weight:600;color:var(--text);font-family:'DM Mono',monospace;}
+
+/* ALERTS */
+.alerts{display:flex;flex-direction:column;gap:7px;}
+.alert{display:flex;gap:9px;padding:9px 11px;border-radius:7px;font-size:11px;}
+.alert.w{background:#FEF3D9;border-left:3px solid var(--amber);}
+.alert.d{background:#FDECEA;border-left:3px solid var(--red);}
+.alert.ok{background:#E6F5EF;border-left:3px solid var(--green);}
+.alert.b{background:#EEF5FC;border-left:3px solid var(--blue);}
+.alert-icon{font-size:13px;flex-shrink:0;}
+.alert-txt{color:var(--text);line-height:1.4;}
+.alert-txt strong{font-weight:600;}
+
+/* INSIGHT */
+.insight{background:var(--cream-bg);border-left:3px solid var(--navy);border-radius:0 7px 7px 0;padding:9px 13px;margin-top:9px;font-size:11px;color:var(--teal);font-style:italic;line-height:1.5;}
+
+/* FOOTER */
+.ftr{background:var(--night);padding:11px 2rem;display:flex;align-items:center;justify-content:space-between;margin-top:2rem;}
+.ftr-logo{font-size:13px;font-weight:600;letter-spacing:.12em;color:rgba(255,255,255,.6);}
+.ftr-txt{font-size:10.5px;color:rgba(255,255,255,.3);}
+.ftr-note{font-size:9.5px;color:rgba(255,255,255,.2);font-style:italic;}
+
+/* BADGE */
+.badge{background:var(--green);color:#fff;font-size:9.5px;font-weight:600;letter-spacing:.08em;padding:2px 9px;border-radius:20px;}
+</style>
+</head>
+<body>
+
+<div class="hdr">
+  <div class="hdr-l">
+    <span class="logo">AIM</span>
+    <div class="hdr-sep"></div>
+    <span class="hdr-sub">Analytics &amp; Intelligence for Management</span>
+    <span class="badge">PORTFOLIO</span>
+  </div>
+  <div class="hdr-r">Dashboard Financiero &amp; Contable · Año 2025</div>
+</div>
+
+<div class="subhdr">
+  <div>
+    <div class="biz-name">Empresa de Servicios &amp; Distribución — Análisis Financiero Integral 2025</div>
+    <div class="biz-meta">P&amp;L · Cashflow · IVA · Deuda · Rentabilidad por cliente · Proyección 2026</div>
+  </div>
+  <div class="last-upd">Actualizado: 31/12/2025 · Período: Ene–Dic 2025</div>
+</div>
+
+<div class="nav-tabs">
+  <div class="tab active">Resumen Ejecutivo</div>
+  <div class="tab">P&amp;L Detallado</div>
+  <div class="tab">Cashflow</div>
+  <div class="tab">IVA &amp; Fiscal</div>
+  <div class="tab">Clientes &amp; Cartera</div>
+</div>
+
+<div class="main">
+
+  <!-- KPIs -->
+  <p class="sec-label">indicadores clave del ejercicio 2025</p>
+  <div class="kpi-grid">
+    <div class="kpi g">
+      <p class="kpi-l">Ingresos netos</p>
+      <p class="kpi-v pos">$284.6M</p>
+      <p class="kpi-s up">▲ +18.4% vs 2024</p>
+    </div>
+    <div class="kpi">
+      <p class="kpi-l">Margen bruto</p>
+      <p class="kpi-v">62.3%</p>
+      <p class="kpi-s up">▲ +2.1 pp vs 2024</p>
+    </div>
+    <div class="kpi">
+      <p class="kpi-l">EBITDA</p>
+      <p class="kpi-v">$48.2M</p>
+      <p class="kpi-s">16.9% del ingreso</p>
+    </div>
+    <div class="kpi r">
+      <p class="kpi-l">Deuda financiera neta</p>
+      <p class="kpi-v neg">$31.4M</p>
+      <p class="kpi-s dn">↑ +$8.1M vs inicio</p>
+    </div>
+    <div class="kpi a">
+      <p class="kpi-l">DSO (días cobro)</p>
+      <p class="kpi-v warn">47 días</p>
+      <p class="kpi-s">Benchmark: &lt;35 días</p>
+    </div>
+    <div class="kpi b">
+      <p class="kpi-l">Resultado neto</p>
+      <p class="kpi-v pos">$29.8M</p>
+      <p class="kpi-s">10.5% margen neto</p>
+    </div>
+  </div>
+
+  <!-- ROW 1 -->
+  <div class="row2">
+    <div class="card">
+      <p class="card-t">ingresos vs costos mensuales — evolución 2025</p>
+      <div class="chart-w" style="height:215px"><canvas id="c_evol" width="795" height="215" style="display: block; box-sizing: border-box; height: 215px; width: 795px;"></canvas></div>
+    </div>
+    <div class="card">
+      <p class="card-t">composición del resultado — waterfall anual</p>
+      <div class="chart-w" style="height:215px"><canvas id="c_wf" width="557" height="215" style="display: block; box-sizing: border-box; height: 215px; width: 557px;"></canvas></div>
+    </div>
+  </div>
+
+  <!-- ROW 2 -->
+  <div class="row3">
+    <div class="card">
+      <p class="card-t">estado de resultados 2025</p>
+      <table class="tbl">
+        <thead><tr><th>Concepto</th><th>$M</th><th>%</th></tr></thead>
+        <tbody>
+          <tr><td>Ingresos brutos</td><td>$298.4M</td><td>100.0%</td></tr>
+          <tr class="sub"><td>— Descuentos y bonificaciones</td><td class="neg">($13.8M)</td><td class="neg">−4.6%</td></tr>
+          <tr><td><strong>Ingresos netos</strong></td><td><strong>$284.6M</strong></td><td><strong>95.4%</strong></td></tr>
+          <tr class="sub"><td>— Costo de ventas</td><td class="neg">($107.3M)</td><td class="neg">−37.7%</td></tr>
+          <tr class="bold"><td>Margen bruto</td><td class="pos">$177.3M</td><td class="pos">62.3%</td></tr>
+          <tr class="sub"><td>— Gastos comerciales</td><td class="neg">($68.4M)</td><td class="neg">−24.0%</td></tr>
+          <tr class="sub"><td>— Gastos administración</td><td class="neg">($38.2M)</td><td class="neg">−13.4%</td></tr>
+          <tr class="sub"><td>— Gastos financieros</td><td class="neg">($22.5M)</td><td class="neg">−7.9%</td></tr>
+          <tr class="bold"><td>EBITDA</td><td class="pos">$48.2M</td><td class="pos">16.9%</td></tr>
+          <tr class="sub"><td>— Amortizaciones</td><td class="neg">($9.1M)</td><td class="neg">−3.2%</td></tr>
+          <tr class="sub"><td>— Impuesto a las ganancias</td><td class="neg">($9.3M)</td><td class="neg">−3.3%</td></tr>
+          <tr class="bold"><td>Resultado neto</td><td class="pos">$29.8M</td><td class="pos">10.5%</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="card">
+      <p class="card-t">margen bruto por línea de negocio</p>
+      <div id="lineas_bars" class="hbar-wrap" style="margin-top:6px"><div class="hbar-row"><span class="hbar-lbl">Consultoría</span><div class="hbar-bg"><div class="hbar-fill" style="width:78%;background:#1A9E70"></div></div><span class="hbar-val">78%</span></div><div class="hbar-row"><span class="hbar-lbl">Proyectos</span><div class="hbar-bg"><div class="hbar-fill" style="width:71%;background:#1A9E70"></div></div><span class="hbar-val">71%</span></div><div class="hbar-row"><span class="hbar-lbl">Servicios recurrentes</span><div class="hbar-bg"><div class="hbar-fill" style="width:64%;background:#2E75B6"></div></div><span class="hbar-val">64%</span></div><div class="hbar-row"><span class="hbar-lbl">Soporte técnico</span><div class="hbar-bg"><div class="hbar-fill" style="width:58%;background:#2E75B6"></div></div><span class="hbar-val">58%</span></div><div class="hbar-row"><span class="hbar-lbl">Distribución</span><div class="hbar-bg"><div class="hbar-fill" style="width:41%;background:#B87200"></div></div><span class="hbar-val">41%</span></div><div class="hbar-row"><span class="hbar-lbl">Otros</span><div class="hbar-bg"><div class="hbar-fill" style="width:35%;background:#C0392B"></div></div><span class="hbar-val">35%</span></div></div>
+      <div class="insight">💡 Consultoría y proyectos lideran el margen. Distribución actúa como ancla de volumen pero arrastra el margen promedio hacia abajo.</div>
+    </div>
+    <div class="card">
+      <p class="card-t">estructura de costos operativos</p>
+      <div class="chart-w" style="height:180px"><canvas id="c_costos" width="435" height="180" style="display: block; box-sizing: border-box; height: 180px; width: 435px;"></canvas></div>
+      <div class="mrow" style="margin-top:10px">
+        <span class="mrow-n">Costo fijo / Ingreso</span>
+        <span class="mrow-v warn">38.4%</span>
+      </div>
+      <div class="mrow">
+        <span class="mrow-n">Costo variable / Ingreso</span>
+        <span class="mrow-v">37.7%</span>
+      </div>
+      <div class="mrow">
+        <span class="mrow-n">Apalancamiento operativo</span>
+        <span class="mrow-v pos">1.62×</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ROW 3 -->
+  <div class="row2">
+    <div class="card">
+      <p class="card-t">cashflow operativo mensual 2025 ($M)</p>
+      <div class="chart-w" style="height:200px"><canvas id="c_cf" width="795" height="200" style="display: block; box-sizing: border-box; height: 200px; width: 795px;"></canvas></div>
+    </div>
+    <div class="card">
+      <p class="card-t">posición IVA mensual — débito vs crédito fiscal ($M)</p>
+      <div class="chart-w" style="height:200px"><canvas id="c_iva" width="557" height="200" style="display: block; box-sizing: border-box; height: 200px; width: 557px;"></canvas></div>
+    </div>
+  </div>
+
+  <!-- ROW 4 -->
+  <div class="row22">
+    <div class="card">
+      <p class="card-t">cartera de clientes — concentración de ingresos</p>
+      <div class="chart-w" style="height:160px"><canvas id="c_clientes" width="676" height="160" style="display: block; box-sizing: border-box; height: 160px; width: 676px;"></canvas></div>
+      <div class="insight">⚠ Top 3 clientes concentran el 58% del ingreso. Riesgo de concentración elevado — diversificación recomendada.</div>
+    </div>
+    <div class="card">
+      <p class="card-t">indicadores financieros clave &amp; alertas</p>
+      <div class="mrow"><span class="mrow-n">Liquidez corriente</span><span class="mrow-v pos">1.84×</span></div>
+      <div class="mrow"><span class="mrow-n">Endeudamiento (Deuda/EBITDA)</span><span class="mrow-v warn">0.65×</span></div>
+      <div class="mrow"><span class="mrow-n">Rotación de cuentas a cobrar</span><span class="mrow-v">7.7 veces/año</span></div>
+      <div class="mrow"><span class="mrow-n">Período medio de cobro (DSO)</span><span class="mrow-v warn">47 días</span></div>
+      <div class="mrow"><span class="mrow-n">Período medio de pago (DPO)</span><span class="mrow-v pos">38 días</span></div>
+      <div class="mrow"><span class="mrow-n">Capital de trabajo neto</span><span class="mrow-v">$42.3M</span></div>
+      <div class="mrow"><span class="mrow-n">ROE (Retorno sobre patrimonio)</span><span class="mrow-v pos">22.4%</span></div>
+
+      <p style="font-size:9.5px;font-weight:600;letter-spacing:.08em;color:var(--slate);text-transform:uppercase;margin:13px 0 8px">alertas &amp; recomendaciones</p>
+      <div class="alerts">
+        <div class="alert d">
+          <span class="alert-icon">🔴</span>
+          <span class="alert-txt"><strong>DSO 47 días</strong> — supera el benchmark (35 días). Revisar política de cobranzas y condiciones de pago a top clientes.</span>
+        </div>
+        <div class="alert w">
+          <span class="alert-icon">⚠</span>
+          <span class="alert-txt"><strong>Concentración de cartera</strong> — 3 clientes = 58% del ingreso. Escenario de riesgo si uno reduce operaciones.</span>
+        </div>
+        <div class="alert ok">
+          <span class="alert-icon">✓</span>
+          <span class="alert-txt"><strong>Liquidez sólida 1.84×</strong> — capacidad de pago de corto plazo holgada. Margen para financiar crecimiento.</span>
+        </div>
+        <div class="alert b">
+          <span class="alert-icon">📊</span>
+          <span class="alert-txt"><strong>EBITDA +18.4% interanual</strong> — crecimiento sostenido. Palanca operativa positiva.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ROW 5 — PROYECCIÓN -->
+  <div class="card" style="margin-bottom:11px">
+    <p class="card-t">proyección 2026 vs real 2025 — ingresos y resultado neto ($M)</p>
+    <div class="chart-w" style="height:170px"><canvas id="c_proy" width="1400" height="170" style="display: block; box-sizing: border-box; height: 170px; width: 1400px;"></canvas></div>
+  </div>
+
+</div>
+
+<div class="ftr">
+  <span class="ftr-logo">AIM</span>
+  <span class="ftr-txt">Analytics &amp; Intelligence for Management · Gonzalo Dalmasso Müller · gonzalodalmasso7@hotmail.com</span>
+  <span class="ftr-note">Proyecto de portfolio · datos ilustrativos · 2025</span>
+</div>
+
+<script>
+const tc='#94A3B8', gc='rgba(2,24,89,0.06)';
+const meses=['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'];
+
+// Evolución ingresos vs costos
+const ing_m = [20.1,18.4,22.3,23.8,24.1,25.2,26.0,24.8,22.9,24.3,25.4,27.3];
+const costo_m = [7.8,7.1,8.4,8.9,9.0,9.3,9.7,9.4,8.7,9.1,9.6,10.3];
+const res_m = ing_m.map((v,i)=>+(v-costo_m[i]-8.5).toFixed(1));
+
+new Chart(document.getElementById('c_evol'),{
+  type:'bar',
+  data:{labels:meses,datasets:[
+    {label:'Ingresos netos',data:ing_m,backgroundColor:'rgba(2,24,89,0.85)',borderRadius:{topLeft:3,topRight:3},stack:'s',order:2},
+    {label:'Costo de ventas',data:costo_m.map(v=>-v),backgroundColor:'rgba(192,57,43,0.75)',borderRadius:{bottomLeft:3,bottomRight:3},stack:'s',order:2},
+    {label:'Resultado operativo',data:res_m,type:'line',borderColor:'#1A9E70',backgroundColor:'transparent',pointRadius:4,pointBackgroundColor:'#1A9E70',tension:.3,order:1}
+  ]},
+  options:{responsive:true,maintainAspectRatio:false,
+    plugins:{legend:{labels:{font:{size:10},color:tc,boxWidth:10}},tooltip:{callbacks:{label:c=>`${c.dataset.label}: $${Math.abs(c.raw).toFixed(1)}M`}}},
+    scales:{
+      x:{stacked:true,ticks:{color:tc,font:{size:9}},grid:{display:false}},
+      y:{stacked:true,ticks:{color:tc,font:{size:9},callback:v=>`$${v}M`},grid:{color:gc}}
+    }}
+});
+
+// Waterfall
+new Chart(document.getElementById('c_wf'),{
+  type:'bar',
+  data:{labels:['Ing.\nbrutos','Desc.','Ing.\nnetos','Costo\nventas','Margen\nbruto','G.Comerc.','G.Admin.','G.Financ.','EBITDA','Impuest.','Result.\nneto'],
+    datasets:[{data:[298.4,-13.8,284.6,-107.3,177.3,-68.4,-38.2,-22.5,48.2,-18.4,29.8],
+      backgroundColor:['#2E75B6','#C0392B','#5D768C','#C0392B','#1A9E70','#C0392B','#C0392B','#C0392B','#2E75B6','#C0392B','#1A9E70'],
+      borderRadius:4}]},
+  options:{responsive:true,maintainAspectRatio:false,
+    plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>`$${Math.abs(c.raw).toFixed(1)}M`}}},
+    scales:{
+      x:{ticks:{color:tc,font:{size:8},maxRotation:0},grid:{display:false}},
+      y:{ticks:{color:tc,font:{size:9},callback:v=>`$${v}M`},grid:{color:gc}}
+    }}
+});
+
+// Lineas de negocio barras horizontales
+const lineas=[
+  {n:'Consultoría',p:78,v:'78%',c:'#1A9E70'},
+  {n:'Proyectos',p:71,v:'71%',c:'#1A9E70'},
+  {n:'Servicios recurrentes',p:64,v:'64%',c:'#2E75B6'},
+  {n:'Soporte técnico',p:58,v:'58%',c:'#2E75B6'},
+  {n:'Distribución',p:41,v:'41%',c:'#B87200'},
+  {n:'Otros',p:35,v:'35%',c:'#C0392B'},
+];
+const barsEl=document.getElementById('lineas_bars');
+lineas.forEach(l=>{
+  const r=document.createElement('div'); r.className='hbar-row';
+  r.innerHTML=`<span class="hbar-lbl">${l.n}</span><div class="hbar-bg"><div class="hbar-fill" style="width:${l.p}%;background:${l.c}"></div></div><span class="hbar-val">${l.v}</span>`;
+  barsEl.appendChild(r);
+});
+
+// Estructura costos
+new Chart(document.getElementById('c_costos'),{
+  type:'doughnut',
+  data:{labels:['Costo ventas','G.Comerciales','G.Administración','G.Financieros','Amortizaciones'],
+    datasets:[{data:[37.7,24.0,13.4,7.9,3.2],
+      backgroundColor:['#021859','#023059','#5D768C','#B87200','#94A3B8'],borderWidth:0,hoverOffset:4}]},
+  options:{responsive:true,maintainAspectRatio:false,cutout:'62%',
+    plugins:{legend:{position:'right',labels:{font:{size:9},color:tc,boxWidth:9,padding:6}},
+      tooltip:{callbacks:{label:c=>`${c.label}: ${c.raw}%`}}}}
+});
+
+// Cashflow
+const cf_op=[2.1,1.4,3.2,3.8,3.1,4.2,4.8,3.9,2.8,3.4,4.1,5.2];
+const cf_inv=[-1.2,-0.8,-1.5,-2.1,-0.9,-1.3,-1.8,-1.1,-0.7,-1.4,-1.2,-2.3];
+const cf_fin=[-0.8,-0.6,-0.9,-1.1,-0.7,-0.9,-1.0,-0.8,-0.6,-0.9,-0.8,-1.2];
+const cf_net=cf_op.map((v,i)=>+(v+cf_inv[i]+cf_fin[i]).toFixed(1));
+
+new Chart(document.getElementById('c_cf'),{
+  type:'bar',
+  data:{labels:meses,datasets:[
+    {label:'Operativo',data:cf_op,backgroundColor:'rgba(26,158,112,0.8)',borderRadius:{topLeft:3,topRight:3},stack:'s'},
+    {label:'Inversión',data:cf_inv,backgroundColor:'rgba(184,114,0,0.7)',stack:'s'},
+    {label:'Financiero',data:cf_fin,backgroundColor:'rgba(192,57,43,0.7)',borderRadius:{bottomLeft:3,bottomRight:3},stack:'s'},
+    {label:'Flujo neto',data:cf_net,type:'line',borderColor:'#021859',backgroundColor:'transparent',pointRadius:3,pointBackgroundColor:'#021859',tension:.35,order:0}
+  ]},
+  options:{responsive:true,maintainAspectRatio:false,
+    plugins:{legend:{labels:{font:{size:9},color:tc,boxWidth:9}},tooltip:{callbacks:{label:c=>`${c.dataset.label}: $${c.raw}M`}}},
+    scales:{
+      x:{stacked:true,ticks:{color:tc,font:{size:9}},grid:{display:false}},
+      y:{stacked:true,ticks:{color:tc,font:{size:9},callback:v=>`$${v}M`},grid:{color:gc}}
+    }}
+});
+
+// IVA
+const deb=[17.2,15.8,18.4,19.1,18.8,20.2,20.8,19.4,18.1,19.6,20.4,21.8];
+const cred=[6.4,5.9,7.1,7.4,7.2,7.8,8.0,7.5,6.9,7.6,7.9,8.4];
+const pos_iva=deb.map((v,i)=>+(v-cred[i]).toFixed(1));
+
+new Chart(document.getElementById('c_iva'),{
+  type:'bar',
+  data:{labels:meses,datasets:[
+    {label:'Débito fiscal',data:deb,backgroundColor:'rgba(192,57,43,0.75)',borderRadius:{topLeft:3,topRight:3}},
+    {label:'Crédito fiscal',data:cred,backgroundColor:'rgba(26,158,112,0.8)',borderRadius:{topLeft:3,topRight:3}},
+    {label:'Posición neta',data:pos_iva,type:'line',borderColor:'#B87200',backgroundColor:'transparent',pointRadius:3,pointBackgroundColor:'#B87200',tension:.3,order:0}
+  ]},
+  options:{responsive:true,maintainAspectRatio:false,
+    plugins:{legend:{labels:{font:{size:9},color:tc,boxWidth:9}},tooltip:{callbacks:{label:c=>`${c.dataset.label}: $${c.raw}M`}}},
+    scales:{
+      x:{ticks:{color:tc,font:{size:9}},grid:{display:false}},
+      y:{ticks:{color:tc,font:{size:9},callback:v=>`$${v}M`},grid:{color:gc}}
+    }}
+});
+
+// Clientes
+new Chart(document.getElementById('c_clientes'),{
+  type:'bar',
+  data:{labels:['Cliente A','Cliente B','Cliente C','Cliente D','Cliente E','Resto (47)'],
+    datasets:[{data:[28.4,21.7,16.5,12.3,9.8,195.9],
+      backgroundColor:['#021859','#021859','#023059','#5D768C','#94A3B8','#E8EDF5'],borderRadius:4}]},
+  options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,
+    plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>`$${c.raw}M (${(c.raw/284.6*100).toFixed(1)}%)`}}},
+    scales:{
+      x:{ticks:{color:tc,font:{size:9},callback:v=>`$${v}M`},grid:{color:gc}},
+      y:{ticks:{color:tc,font:{size:9}},grid:{display:false}}
+    }}
+});
+
+// Proyección 2026
+const real_ing=[20.1,18.4,22.3,23.8,24.1,25.2,26.0,24.8,22.9,24.3,25.4,27.3];
+const proy_ing=[23.5,21.2,25.6,27.4,27.8,29.0,30.0,28.6,26.4,28.0,29.3,31.4];
+const real_res=real_ing.map(v=>+(v*0.105).toFixed(1));
+const proy_res=proy_ing.map(v=>+(v*0.115).toFixed(1));
+
+new Chart(document.getElementById('c_proy'),{
+  type:'bar',
+  data:{labels:meses,datasets:[
+    {label:'Ingresos 2025',data:real_ing,backgroundColor:'rgba(2,24,89,0.5)',borderRadius:{topLeft:3,topRight:3}},
+    {label:'Proy. ingresos 2026',data:proy_ing,backgroundColor:'rgba(2,24,89,0.2)',borderRadius:{topLeft:3,topRight:3},borderColor:'#021859',borderWidth:1},
+    {label:'Result. neto 2025',data:real_res,type:'line',borderColor:'#1A9E70',backgroundColor:'transparent',pointRadius:3,tension:.3},
+    {label:'Proy. result. neto 2026',data:proy_res,type:'line',borderColor:'#1A9E70',backgroundColor:'transparent',pointRadius:3,tension:.3,borderDash:[4,3]}
+  ]},
+  options:{responsive:true,maintainAspectRatio:false,
+    plugins:{legend:{labels:{font:{size:9.5},color:tc,boxWidth:10}},tooltip:{callbacks:{label:c=>`${c.dataset.label}: $${c.raw}M`}}},
+    scales:{
+      x:{ticks:{color:tc,font:{size:9}},grid:{display:false}},
+      y:{ticks:{color:tc,font:{size:9},callback:v=>`$${v}M`},grid:{color:gc}}
+    }}
+});
+</script>
+
+
+</body></html>
